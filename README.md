@@ -59,15 +59,38 @@ Prenez le fichier qui correspond à votre machine dans la
 | **Windows** | `pdftools-<version>-setup.exe` |
 | **macOS** (puces Apple) | `pdftools-<version>-arm64.dmg` |
 
-L’application n’est pas signée — un certificat d’éditeur coûte quelques centaines d’euros
-par an, et c’est un outil de famille. Votre système vous préviendra donc une fois :
-
-- **Windows** : « Windows a protégé votre ordinateur » → *Informations complémentaires* →
-  *Exécuter quand même* ;
-- **macOS** : clic droit sur l’application → *Ouvrir* → *Ouvrir* (au premier lancement
-  seulement).
-
 Aucun droit administrateur n’est nécessaire.
+
+### Windows : « Windows a protégé votre ordinateur »
+
+C’est l’avertissement normal pour une application sans certificat d’éditeur (quelques
+centaines d’euros par an — c’est un outil de famille). Cliquez sur **Informations
+complémentaires**, puis sur **Exécuter quand même**. Une seule fois.
+
+### macOS : « pdftools est endommagé et ne peut pas être ouvert »
+
+Malgré le message, l’application n’a rien d’abîmé : macOS parle ainsi de toute application
+téléchargée qui n’est pas signée par un éditeur identifié. Glissez-la dans
+**Applications**, puis, dans le Terminal :
+
+```sh
+xattr -dr com.apple.quarantine /Applications/pdftools.app
+```
+
+Cette commande retire l’étiquette « téléchargé d’Internet » ; l’application s’ouvre ensuite
+d’un double-clic, maintenant et plus tard. Rien d’autre n’est modifié sur votre Mac.
+
+<details>
+<summary>Si le message persiste (versions 0.7.0 et antérieures)</summary>
+
+Les tout premiers paquets n’étaient pas signés du tout, même sommairement. Ajoutez :
+
+```sh
+codesign --force --deep --sign - /Applications/pdftools.app
+```
+
+Les versions suivantes portent cette signature d’origine : la commande `xattr` suffit.
+</details>
 
 ## Les mises à jour
 
