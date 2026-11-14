@@ -83,10 +83,6 @@ vérification de mise à jour a besoin du réseau, et son échec ne gêne rien.
 **Et mes gros fichiers ?** Tout se passe en mémoire sur votre machine : un PDF de 500 pages
 reste manipulable, et rien ne transite.
 
-**Pourquoi certains outils manquent-ils ?** Compresser, Réparer, PDF/A, Office → PDF et
-PDF → Word s’appuient sur des moteurs lourds (Ghostscript, LibreOffice…) qui ne sont pas
-encore embarqués dans l’application. Ils existent dans la version auto-hébergée.
-
 ---
 
 <p align="center"><sub>
